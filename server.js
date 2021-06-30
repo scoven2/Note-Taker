@@ -26,6 +26,11 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
+//return saved notes as sjson 
+app.get('/api/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, '/db/db.json'));
+});
+
 //api
 app.get('/api/notes', (req, res) => {
     fs.readFile('./db.db.json', 'utf8', (error, data) => {
