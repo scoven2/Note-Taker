@@ -17,17 +17,17 @@ app.use(express.urlencoded({ extended: true }));
 
 //routes 
 //index.html
-app.get('*', (req, res) => {
+app.get('.*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 //notes.html
-app.get('/notes', (req, res) => {
+app.get('./notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
 //api
-app.get('/api/notes', (req, res) => {
+app.get('./api/notes', (req, res) => {
     fs.readFile('./db.db.json', 'utf8', (error, data) => {
         console.log(data);
         res.send(data);
@@ -35,7 +35,7 @@ app.get('/api/notes', (req, res) => {
 });
 
 //new note posted
-app.post('/api/notes', (req, res) => {
+app.post('./api/notes', (req, res) => {
     fs.readFile('./db/db.json', 'utf8', (error, data) => {
         console.log(data)
         const newNote = req.body
@@ -51,7 +51,7 @@ app.post('/api/notes', (req, res) => {
 });
 
 //delete
-app.delete('/api/notes/:id', (req, res) => {
+app.delete('./api/notes/:id', (req, res) => {
     const noteId = req.params.id;
     db.forEach((note) => {
         if (noteId === note.id) {
