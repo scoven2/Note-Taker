@@ -20,7 +20,7 @@ An application that runs in Herokus using node. It allows the user to create a t
 Clone repository from GitHub, open in VS Code, open new terminal, run npm i, npm install, npm init -y.
 
 ## Usage
-Open link 
+For taking notes in any situation! 
 
 ## License
 MIT.
