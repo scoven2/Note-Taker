@@ -40,41 +40,51 @@ app.get('/api/notes', (req, res) => {
 });
 
 //new note posted
+// app.post('/api/notes', (req, res) => {
+//     fs.readFile('./db/db.json', 'utf8', (error, data) => {
+//         console.log(data)
+//         const newNote = req.body
+//         newNote.id = uuidv4()
+//         const notes = JSON.parse(data)
+//             //add new note
+//         notes.push(newNote)
+//             //save note array back to db file
+//         fs.writeFile('./db/db.json', JSON.stringify(notes), () => {
+//             res.send(newNote);
+//         })
+//     })
+// });
+
 app.post('/api/notes', (req, res) => {
-    fs.readFile('./db/db.json', 'utf8', (error, data) => {
-        console.log(data)
-        const newNote = req.body
-        newNote.id = uuidv4()
-        const notes = JSON.parse(data)
-            //add new note
-        notes.push(newNote)
-            //save note array back to db file
-        fs.writeFile('./db/db.json', JSON.stringify(notes), () => {
-            res.send(newNote);
-        })
-    })
-});
+    let newNote = req.body;
+    let noteList = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+    let noteLength = (noteList.length).toString();
+    newNote.id = noteLength;
+    noteList.push(newNote);
+    fs.writeFileSync('./db/db.json', JSON.stringify(noteList));
+    res.json(noteList);
+})
 
 //delete
-app.delete('/api/notes/:id', (req, res) => {
-    const noteId = req.params.id;
-    db.forEach((note) => {
-        if (noteId === note.id) {
-            const noteIndex = db.indexOf(note);
-            db.splice(noteIndex, 1);
-        }
-    });
-    res.send(db);
-});
+// app.delete('/api/notes/:id', (req, res) => {
+//     const noteId = req.params.id;
+//     db.forEach((note) => {
+//         if (noteId === note.id) {
+//             const noteIndex = db.indexOf(note);
+//             db.splice(noteIndex, 1);
+//         }
+//     });
+//     res.send(db);
+// });
 
 app.delete('/api/notes/:id', (req, res) => {
-    let notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+    let noteList = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
     let noteId = (req.params.id).toString();
-    notes = notes.filter(selected => {
+    noteList = noteList.filter(selected => {
         return selected.id != noteId;
     })
-    fs.writeFileSync('./db/db.json', JSON.stringify(notes));
-    res.json(notes);
+    fs.writeFileSync('./db/db.json', JSON.stringify(noteList));
+    res.json(noteList);
 });
 
 //listener
