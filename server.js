@@ -26,7 +26,7 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
-//return saved notes as sjson 
+//return saved notes as json 
 app.get('/api/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/db/db.json'));
 });
@@ -65,6 +65,16 @@ app.delete('/api/notes/:id', (req, res) => {
         }
     });
     res.send(db);
+});
+
+app.delete('/api/notes/:id', (req, res) => {
+    let notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+    let noteId = (req.params.id).toString();
+    notes = notes.filter(selected => {
+        return selected.id != noteId;
+    })
+    fs.writeFileSync('./db/db.json', JSON.stringify(notes));
+    res.json(notes);
 });
 
 //listener
