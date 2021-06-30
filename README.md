@@ -5,7 +5,7 @@ An application that runs in Herokus using node. It allows the user to create a t
 
 [Live link](https://scott-note-taker.herokuapp.com/)
 
-![screenshots](public/assets/NoteTakerApp.png) 
+![Screenshot](public\assets\NoteTakerApp.png) 
 
 ## Table of contents
 - [Description](#description)
@@ -13,6 +13,7 @@ An application that runs in Herokus using node. It allows the user to create a t
 - [Usage](#usage)
 - [License](#license)
 - [Contributing](#contributing)
+- [Languages](#languages)
 - [Questions](#questions)
 
 ## Installation
@@ -26,6 +27,13 @@ MIT.
 
 ## Contributing
 Email me if you'd like to become a contributor using the email below
+
+## Languages
+- HTML
+- CSS
+- Javascript
+- Node
+- Express
 
 ## Questions
 [A link to my gitHub](https://github.com/scoven2)  
