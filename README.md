@@ -5,7 +5,7 @@ An application that runs in Herokus using node. It allows the user to create a t
 
 [Live link](https://scott-note-taker.herokuapp.com/)
 
-![Screenshot](public\assets\NoteTakerApp.png) 
+![Screenshot](/public/assets/NoteTakerApp.png/) 
 
 ## Table of contents
 - [Description](#description)
