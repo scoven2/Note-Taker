@@ -15,10 +15,6 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-//listener
-app.listen(PORT, () =>
-    console.log(`App listening to PORT: ${PORT}`));
-
 //routes
 //index.html
 app.get("*", (req, res) => {
@@ -41,13 +37,13 @@ app.get("/api/notes", (req, res) => {
 //new note posted
 app.post("/api/notes", (req, res) => {
     fs.readFile("./db/db.json", "utf8", (error, data) => {
-        console.log(data);
-        const newNote = req.body;
-        newNote.id = uuidv4();
-        const notes = JSON.parse(data);
-        //add new note
-        notes.push(newNote);
-        //save note array back to db file
+        console.log(data)
+        const newNote = req.body
+        newNote.id = uuidv4()
+        const notes = JSON.parse(data)
+            //add new note
+        notes.push(newNote)
+            //save note array back to db file
         fs.writeFile("./db/db.json", JSON.stringify(notes), () => {
             res.send(newNote);
         })
@@ -65,3 +61,7 @@ app.delete("/api/notes/:id", (req, res) => {
     });
     res.send(db);
 });
+
+//listener
+app.listen(PORT, () =>
+    console.log(`App listening to PORT: ${PORT}`));
