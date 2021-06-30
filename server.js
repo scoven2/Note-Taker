@@ -1,7 +1,7 @@
 //Dependencies
 const express = require("express");
 const path = require("path");
-const fs = reqiure("fs");
+const fs = require("fs");
 
 //unique id
 const { v4: uuidv4 } = require("uuid");
